@@ -12,6 +12,14 @@
 <meta property="og:description" content="{{ description }}">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<script>
+  (function () {
+    var hash = window.location.hash;
+    if (hash && (hash.includes('invite_token') || hash.includes('recovery_token') || hash.includes('confirmation_token') || hash.includes('email_change_token'))) {
+      window.location.replace('/admin/' + hash);
+    }
+  })();
+</script>
 </head>
 <body>
 <div class="topbar"><span>SECP Registered Non-Profit | CUIN: 0094419</span><span>English | اردو</span></div>
