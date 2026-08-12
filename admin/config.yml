@@ -1,0 +1,77 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "news"
+    label: "News & Events Posts"
+    folder: "content/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Tag", name: "tag", widget: "select", options: ["Press Release", "Legal Bulletin", "Project Update", "Event"] }
+      - { label: "Excerpt (shown on the News list page)", name: "excerpt", widget: "text" }
+      - { label: "Permalink", name: "permalink", widget: "string", hint: "Format: /news/your-url-slug/index.html" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "news-post.njk" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "documents"
+    label: "Document / PDF Repository"
+    files:
+      - file: "documents.json"
+        name: "documents"
+        label: "Searchable Documents List"
+        fields:
+          - label: "Documents"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["Legal Act", "Toolkit"] }
+              - { label: "Region", name: "region", widget: "string" }
+              - { label: "Link (Google Drive share link or direct URL)", name: "url", widget: "string" }
+
+  - name: "videos"
+    label: "LCA TV Videos"
+    files:
+      - file: "videos.json"
+        name: "videos"
+        label: "Video List"
+        fields:
+          - label: "Videos"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "YouTube Video ID", name: "youtubeId", widget: "string", hint: "The part after v= in the YouTube URL" }
+
+  - name: "events"
+    label: "Events Calendar"
+    files:
+      - file: "_data/events.json"
+        name: "events"
+        label: "Events List"
+        fields:
+          - label: "Events"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+
+  - name: "social"
+    label: "Social Media Embeds"
+    files:
+      - file: "_data/social.json"
+        name: "social"
+        label: "Social Post Links"
+        fields:
+          - { label: "X (Twitter) Handle", name: "twitterHandle", widget: "string" }
+          - { label: "X (Twitter) Post Text", name: "twitterText", widget: "text" }
+          - { label: "Facebook Post URL", name: "facebookPostUrl", widget: "string" }
+          - { label: "Instagram Post URL", name: "instagramPostUrl", widget: "string" }

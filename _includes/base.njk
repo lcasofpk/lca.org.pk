@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }} | ADLG - Association for Development of Local Governance</title>
+<meta name="description" content="{{ description }}">
+<link rel="icon" type="image/png" href="/assets/logos/adlg-logo.png">
+<link rel="stylesheet" href="/style.css">
+{% if ogImage %}<meta property="og:image" content="{{ ogImage }}">{% endif %}
+<meta property="og:title" content="{{ title }} | ADLG">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<div class="topbar"><span>SECP Registered Non-Profit | CUIN: 0094419</span><span>English | اردو</span></div>
+<nav class="nav">
+<a href="/" class="logo-link"><img src="/assets/logos/header-logo.png" alt="ADLG Logo" class="header-logo"><span class="logo">ADLG</span></a>
+<div class="nav-links">
+{% for item in nav %}
+<a href="{{ item.url }}"{% if item.url == page.url %} class="active"{% endif %}>{{ item.label }}</a>
+{% endfor %}
+</div>
+<a href="#" class="nav-cta">Watch LCA TV ▶</a>
+</nav>
+{{ content | safe }}
+<footer class="footer" id="contact-footer">
+<div class="footer-grid">
+<div><h4>ADLG</h4><p style="font-size:0.85rem;">The Unified National Voice of Local Governments in Pakistan.</p></div>
+<div><h4>Quick Links</h4><ul><li><a href="/about/">About Us</a></li><li><a href="/advocacy/">Legal Advocacy</a></li><li><a href="/resources/">Knowledge Hub</a></li><li><a href="/partners/">Partners</a></li></ul></div>
+<div><h4>Regional Offices</h4><ul><li>Lahore (LCAP)</li><li>Karachi (LCAS)</li><li>Peshawar (LCA-KP)</li><li>Quetta / Muzaffarabad / Gilgit</li></ul></div>
+<div><h4>Legal Info</h4><ul><li>SECP Sec 42 &amp; 32 Non-Profit</li><li>CUIN: 0094419</li><li><a href="mailto:info@adlg.org.pk">info@adlg.org.pk</a></li></ul></div>
+</div>
+<div class="footer-bottom">© {% year %} ADLG. All Rights Reserved. | Registered Non-Profit Federation</div>
+</footer>
+{% for src in extraScripts %}<script src="{{ src }}"></script>
+{% endfor %}
+</body>
+</html>

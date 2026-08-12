@@ -1,0 +1,11 @@
+[
+  { "label": "Home", "url": "/" },
+  { "label": "About Us", "url": "/about/" },
+  { "label": "Regional LCAs", "url": "/regional-alliance/" },
+  { "label": "Our Work", "url": "/our-work/" },
+  { "label": "Advocacy", "url": "/advocacy/" },
+  { "label": "Resources", "url": "/resources/" },
+  { "label": "Partners", "url": "/partners/" },
+  { "label": "News", "url": "/news/" },
+  { "label": "Contact Us", "url": "/contact/" }
+]
