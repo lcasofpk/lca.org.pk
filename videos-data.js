@@ -1,6 +1,0 @@
-const ADLG_VIDEOS = [
-  {title:"Councillor Training Series - Roles & Responsibilities", youtubeId:"REPLACE_VIDEO_ID_1"},
-  {title:"Local Government Acts Explained", youtubeId:"REPLACE_VIDEO_ID_2"},
-  {title:"Special Groups Spotlight: Women, Youth, Minorities", youtubeId:"REPLACE_VIDEO_ID_3"},
-  {title:"Municipal Energy Management Seminar", youtubeId:"REPLACE_VIDEO_ID_4"}
-];
