@@ -13,6 +13,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("script.js");
   eleventyConfig.addPassthroughCopy("documents.json");
   eleventyConfig.addPassthroughCopy("videos.json");
+  eleventyConfig.addPassthroughCopy({ ".assetsignore": ".assetsignore" });
 
   eleventyConfig.addCollection("newsPosts", function(collectionApi) {
     return collectionApi.getFilteredByGlob("content/news/*.md").sort((a, b) => b.date - a.date);
