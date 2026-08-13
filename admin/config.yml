@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: lcasofpk/lca.org.pk
   branch: main
+  base_url: https://lca.org.pk
+  auth_endpoint: auth
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
