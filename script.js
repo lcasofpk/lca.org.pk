@@ -81,6 +81,9 @@ async function initVideoGrid(){
   const grid = document.getElementById('video-grid');
   if(!grid) return;
 
+  const previewLimit = parseInt(grid.dataset.limit, 10) || 0; // 0 = show all
+  const moreLink = grid.dataset.moreLink || '';
+
   let videos = [];
   try{
     const res = await fetch('/videos.json');
@@ -90,7 +93,10 @@ async function initVideoGrid(){
     return;
   }
 
-  videos.forEach(v => {
+  const showLimited = previewLimit > 0 && videos.length > previewLimit;
+  const toShow = showLimited ? videos.slice(0, previewLimit) : videos;
+
+  toShow.forEach(v => {
     const id = extractYouTubeId(v.youtubeId);
     const card = document.createElement('div');
     card.className = 'video-card';
@@ -103,6 +109,15 @@ async function initVideoGrid(){
     card.addEventListener('click', () => openVideoModal(id, v.title));
     grid.appendChild(card);
   });
+
+  if(showLimited && moreLink){
+    const more = document.createElement('a');
+    more.href = moreLink;
+    more.className = 'video-card';
+    more.style.cssText = 'display:flex;align-items:center;justify-content:center;color:var(--emerald);font-weight:700;min-height:160px;text-decoration:none;';
+    more.innerHTML = `See all ${videos.length} videos &rarr;`;
+    grid.appendChild(more);
+  }
 }
 
 function openVideoModal(id, title){
