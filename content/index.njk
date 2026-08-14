@@ -1,6 +1,8 @@
 ---
 title: "Home"
 description: "The unified national voice of local governments in Pakistan."
+extraScripts:
+  - "/script.js"
 ---
 <section class="hero">
 <div class="hero-left">
@@ -9,6 +11,32 @@ description: "The unified national voice of local governments in Pakistan."
 <div class="btn-row"><a href="/regional-alliance/" class="btn btn-primary">Explore Regional Alliance</a><a href="#" class="btn btn-outline">Watch LCA TV ▶</a></div>
 </div>
 <div class="hero-right"><img src="/assets/logos/lcas-network-graphic.png" alt="ADLG network of Local Councils Associations across Pakistan" style="max-width:400px;"></div>
+</section>
+<section class="section section-alt">
+<h2>Latest News</h2>
+<div class="news-grid">
+{% for post in collections.newsPosts.slice(0, 3) %}
+<a href="{{ post.url }}" class="news-card" style="display:block;color:inherit;">
+<span class="tag">{{ post.data.tag }}</span>
+<h4>{{ post.data.title }}</h4>
+<p>{{ post.data.excerpt }}</p>
+</a>
+{% else %}
+<p style="color:#888;">No news posts yet.</p>
+{% endfor %}
+</div>
+<p style="text-align:center;margin-top:24px;"><a href="/news/" class="btn btn-navy">View All News &amp; Events</a></p>
+</section>
+<section class="section">
+<h2>LCA TV — Latest Videos</h2>
+<div class="video-grid" id="video-grid"></div>
+<p style="text-align:center;margin-top:24px;"><a href="/resources/" class="btn btn-navy">Watch More on Resources</a></p>
+</section>
+<section class="section section-alt">
+<h2>Find a Document Fast</h2>
+<div class="search-bar"><input type="text" id="doc-search" placeholder="Search Legal Acts, Toolkits, and more..."></div>
+<p class="doc-count" id="doc-count"></p>
+<div class="grid" id="doc-results"></div>
 </section>
 <div class="stats">
 <div class="stat"><div class="num">145</div><div class="label">Districts Covered</div></div>
