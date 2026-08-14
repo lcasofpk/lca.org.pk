@@ -5,6 +5,9 @@ async function initDocSearch(){
   const countEl = document.getElementById('doc-count');
   if(!input || !results) return;
 
+  const previewLimit = parseInt(results.dataset.limit, 10) || 0; // 0 = show all
+  const moreLink = results.dataset.moreLink || '';
+
   let documents = [];
   try{
     const res = await fetch('/documents.json');
@@ -14,21 +17,35 @@ async function initDocSearch(){
     return;
   }
 
-  function render(list){
+  function render(list, isDefaultView){
     results.innerHTML = '';
     if(list.length === 0){
       results.innerHTML = '<p style="color:#888;padding:20px;">No documents match your search.</p>';
     }
-    list.forEach(doc => {
+
+    const showLimited = isDefaultView && previewLimit > 0 && list.length > previewLimit;
+    const toShow = showLimited ? list.slice(0, previewLimit) : list;
+
+    toShow.forEach(doc => {
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `<h4>${doc.title}</h4><p>${doc.category} &middot; ${doc.region}</p><a class="download-btn" href="${doc.url}" target="_blank" rel="noopener">Open Document</a>`;
       results.appendChild(card);
     });
+
+    if(showLimited && moreLink){
+      const more = document.createElement('a');
+      more.href = moreLink;
+      more.className = 'card';
+      more.style.cssText = 'text-align:center;display:flex;align-items:center;justify-content:center;color:var(--emerald);font-weight:700;';
+      more.innerHTML = `See all ${list.length} documents &rarr;`;
+      results.appendChild(more);
+    }
+
     if(countEl) countEl.textContent = list.length + (list.length === 1 ? ' document' : ' documents');
   }
 
-  render(documents);
+  render(documents, true);
 
   input.addEventListener('input', () => {
     const q = input.value.trim().toLowerCase();
@@ -37,7 +54,7 @@ async function initDocSearch(){
       doc.category.toLowerCase().includes(q) ||
       doc.region.toLowerCase().includes(q)
     );
-    render(filtered);
+    render(filtered, q === ''); // only apply the preview limit when the search box is empty
   });
 }
 
