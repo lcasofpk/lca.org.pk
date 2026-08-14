@@ -5,14 +5,32 @@ extraScripts:
   - "/script.js"
 ---
 <section class="hero">
-<div class="hero-left">
-<h1>UNITING LOCAL VOICES,<span>EMPOWERING COMMUNITIES.</span></h1>
-<p>The Association for Development of Local Governance (ADLG) represents all provincial, Azad Jammu &amp; Kashmir, and Gilgit-Baltistan Local Councils Associations. We bridge local communities and decision-makers to build inclusive, self-sustaining local democracy.</p>
-<div class="btn-row"><a href="/regional-alliance/" class="btn btn-primary">Explore Regional Alliance</a>
-</div>
-<div class="hero-right"><img src="/assets/logos/lcas-network-graphic.png" alt="ADLG network of Local Councils Associations across Pakistan" style="max-width:400px;"></div>
+  <!-- Left Side: Content -->
+  <div class="hero-left">
+    <h1>UNITING LOCAL VOICES, <span>EMPOWERING COMMUNITIES.</span></h1>
+    <p>
+      The Association for Development of Local Governance (ADLG) represents all 
+      provincial, Azad Jammu &amp; Kashmir, and Gilgit-Baltistan Local Councils Associations. 
+      We bridge local communities and decision-makers to build inclusive, self-sustaining local democracy.
+    </p>
+    <div class="btn-row">
+      <a href="/regional-alliance/" class="btn btn-primary">Explore Regional Alliance</a>
+    </div>
+  </div>
+
+  <!-- Right Side: Logo/Graphic -->
+  <div class="hero-right">
+    <img 
+      src="/assets/logos/lcas-network-graphic.png" 
+      alt="ADLG network of Local Councils Associations across Pakistan"
+      class="hero-logo"
+    />
+  </div>
 </section>
+
 <section class="section section-alt">
+  <!-- Section content -->
+</section>
 <h2>Latest News</h2>
 <div class="news-grid">
 {% for post in collections.newsPosts.slice(0, 3) %}
