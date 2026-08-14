@@ -51,8 +51,7 @@ collections:
             widget: "list"
             fields:
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "YouTube Video ID", name: "youtubeId", widget: "string", hint: "The part after v= in the YouTube URL" }
-
+              - { label: "YouTube Link or Video ID", name: "youtubeId", widget: "string", hint: "Paste the full YouTube link (e.g. https://www.youtube.com/watch?v=...) or just the video ID — either works." }
   - name: "events"
     label: "Events Calendar"
     files:
