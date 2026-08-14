@@ -42,6 +42,24 @@ async function initDocSearch(){
 }
 
 // ---------- Video Grid + Modal Player ----------
+
+// Accepts a full YouTube URL (any common format) OR a bare video ID, and always
+// returns just the 11-character ID. This means it doesn't matter what a CMS
+// editor pastes in — a full link or just the ID both work correctly.
+function extractYouTubeId(input){
+  if(!input) return '';
+  input = input.trim();
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+  ];
+  for(const p of patterns){
+    const m = input.match(p);
+    if(m) return m[1];
+  }
+  if(/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+  return input; // fallback — will just fail gracefully to the placeholder thumbnail
+}
+
 async function initVideoGrid(){
   const grid = document.getElementById('video-grid');
   if(!grid) return;
@@ -56,15 +74,16 @@ async function initVideoGrid(){
   }
 
   videos.forEach(v => {
+    const id = extractYouTubeId(v.youtubeId);
     const card = document.createElement('div');
     card.className = 'video-card';
     card.innerHTML = `
       <div class="video-thumb-wrap">
-        <img src="https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg" alt="${v.title}" onerror="this.onerror=null;this.parentElement.classList.add('thumb-fallback');this.style.display='none';">
+        <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="${v.title}" onerror="this.onerror=null;this.parentElement.classList.add('thumb-fallback');this.style.display='none';">
         <div class="play-overlay">▶</div>
       </div>
       <div class="video-title">${v.title}</div>`;
-    card.addEventListener('click', () => openVideoModal(v.youtubeId, v.title));
+    card.addEventListener('click', () => openVideoModal(id, v.title));
     grid.appendChild(card);
   });
 }
