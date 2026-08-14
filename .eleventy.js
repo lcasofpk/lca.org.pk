@@ -7,6 +7,13 @@ module.exports = function(eleventyConfig) {
     return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
   });
 
+  // Turns plain text with blank-line-separated paragraphs into <p> tags,
+  // for simple text blocks in the CMS page builder.
+  eleventyConfig.addFilter("nl2p", (text) => {
+    if (!text) return "";
+    return text.split(/\n\s*\n/).map(p => `<p>${p.trim()}</p>`).join("\n");
+  });
+
   eleventyConfig.addPassthroughCopy("style.css");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("admin");
