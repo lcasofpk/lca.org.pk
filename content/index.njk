@@ -27,22 +27,24 @@ extraScripts:
     />
   </div>
 </section>
-<section class="section section-alt">
-  <!-- Section content -->
-</section>
-<h2>Latest News</h2>
-<div class="news-grid">
-{% for post in collections.newsPosts.slice(0, 3) %}
-<a href="{{ post.url }}" class="news-card" style="display:block;color:inherit;">
-<span class="tag">{{ post.data.tag }}</span>
-<h4>{{ post.data.title }}</h4>
-<p>{{ post.data.excerpt }}</p>
-</a>
-{% else %}
-<p style="color:#888;">No news posts yet.</p>
-{% endfor %}
-</div>
-<p style="text-align:center;margin-top:24px;"><a href="/news/" class="btn btn-navy">View All News &amp; Events</a></p>
+<!-- Wrap in <section class="section"> so it centers & constrains max-width -->
+<section class="section">
+  <h2 style="text-align: center;">Latest News</h2>
+  
+  <div class="news-grid">
+    {% for post in collections.newsPosts.slice(0, 3) %}
+      <a href="{{ post.url }}" class="news-card" style="display:block;color:inherit;">
+        <span class="tag">{{ post.data.tag }}</span>
+        <h4>{{ post.data.title }}</h4>
+        <p>{{ post.data.excerpt }}</p>
+      </a>
+    {% else %}
+      <p style="color:#888; text-align: center;">No news posts yet.</p>
+    {% endfor %}
+  </div>
+  <p style="text-align:center; margin-top:24px;">
+    <a href="/news/" class="btn btn-navy">View All News &amp; Events</a>
+  </p>
 </section>
 <section class="section">
 <h2>LCA TV — Latest Videos</h2>
