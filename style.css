@@ -75,8 +75,8 @@ table.acts-table tr:nth-child(even){background:var(--light);}
 .video-card{background:#fff;border:1px solid #eee;border-radius:6px;overflow:hidden;cursor:pointer;transition:box-shadow .2s;}
 .video-card:hover{box-shadow:0 6px 18px rgba(0,0,0,.12);}
 .video-thumb{background:var(--navy);color:#fff;height:140px;display:flex;align-items:center;justify-content:center;font-size:2rem;}
-.video-thumb-wrap{position:relative;height:160px;background:var(--navy);}
-.video-thumb-wrap img{width:100%;height:100%;object-fit:cover;}
+.video-thumb-wrap{position:relative;padding-top:56.25%;background:var(--navy);overflow:hidden;}
+.video-thumb-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .video-thumb-wrap.thumb-fallback::after{content:"🎬 Video";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;background:var(--navy);}
 .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff;background:rgba(29,42,68,0.25);text-shadow:0 2px 6px rgba(0,0,0,.5);}
 .video-card .video-title{padding:12px;font-size:0.9rem;font-weight:700;color:var(--navy);}
