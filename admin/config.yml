@@ -23,6 +23,93 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden", default: "news-post.njk" }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  - name: "pages"
+    label: "Pages (Simple)"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description (for SEO / search results)", name: "description", widget: "text" }
+      - { label: "Permalink (URL)", name: "permalink", widget: "string", hint: "Format: /your-page-name/index.html — e.g. /regions/lahore/index.html" }
+      - { label: "Page Content", name: "body", widget: "markdown" }
+
+  - name: "styled_pages"
+    label: "Pages (Styled — Homepage Look)"
+    folder: "content/styled-pages"
+    create: true
+    slug: "{{slug}}"
+    extension: "njk"
+    format: "frontmatter"
+    fields:
+      - { label: "Title (browser tab)", name: "title", widget: "string" }
+      - { label: "Description (for SEO)", name: "description", widget: "text" }
+      - { label: "Permalink (URL)", name: "permalink", widget: "string", hint: "Format: /your-page-name/index.html" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "styled-page.njk" }
+      - { label: "Hero Title", name: "heroTitle", widget: "string" }
+      - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text" }
+      - label: "Page Sections"
+        name: "sections"
+        widget: "list"
+        types:
+          - label: "Text Block"
+            name: "text"
+            fields:
+              - { label: "Heading (optional)", name: "heading", widget: "string", required: false }
+              - { label: "Paragraph Text (leave a blank line between paragraphs)", name: "body", widget: "text" }
+          - label: "Feature Cards (icon grid)"
+            name: "cards"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Cards"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Icon (emoji, optional)", name: "icon", widget: "string", required: false }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+          - label: "Pillars (2–3 highlight boxes)"
+            name: "pillars"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Pillars"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+          - label: "Simple Card Grid"
+            name: "simplegrid"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text (optional)", name: "text", widget: "text", required: false }
+          - label: "Donor / Partner Grid"
+            name: "donors"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+          - label: "Timeline"
+            name: "timeline"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Timeline Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Year / Date", name: "year", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+
   - name: "documents"
     label: "Document / PDF Repository"
     files:
